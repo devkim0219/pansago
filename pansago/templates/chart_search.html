@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+Chart
+{% endblock %}
+
+{% block content %}
+<div class="wrap-loading display-none">
+    <div class="loading-container">
+        <div class="loading"></div>
+        <div id="loading-text">loading</div>
+    </div>
+</div>
+<div class="form-inline row justify-content-center" style="margin-top: 70px;">
+    <div>
+        <input type="text" id="search_keyword" placeholder="검색할 내용 입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '검색할 내용 입력'" class="single-input">
+    </div>
+    <div>
+        <input type="submit" id="search_btn" class="genric-btn info radius" value="검색">
+    </div>
+</div>
+<div class="form-inline row justify-content-center">
+    <img src="" id="myimg" style="max-width: 600%;">
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    $(function() {
+        $('#search_btn').click(function() {
+            // alert('ajax 전송시작');
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'chartSearch' %}",
+                data: {
+                    'search_keyword': $('#search_keyword').val(),
+                    // 'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                dataType: 'json',
+                success: function(json) {
+                    // alert('ajax 통신성공');
+                    // alert(json.graph)
+                    $('#myimg').attr('src', json.graph)
+                },
+                beforeSend:function(){
+                    $('.wrap-loading').removeClass('display-none')
+                },
+                complete:function(){
+                    $('.wrap-loading').addClass('display-none');
+                },
+                error: function(request, error) {
+                    alert('전송 실패...')
+                }
+            })
+        })
+    })
+</script>
+{% endblock %}

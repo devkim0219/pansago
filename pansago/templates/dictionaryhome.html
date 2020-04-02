@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<title></title>
+<script type="text/javascript" src="/lims/core/js/lib/jquery-1.4.2.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css" />
+
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+function doSearch(obj){
+    with (obj) {
+        if(pKeyword.value == "" || pKeyword.value == false){
+            alert("검색어를 입력해주세요.");
+            pKeyword.focus();
+            return false;
+        } else
+            submit();
+    }
+}
+function movePage(pageNo){
+    with (document.frmPage) {
+        pPage.value = pageNo;
+        pAct.value = "list";
+        submit();
+    }
+}
+</script>
+</head>
+
+<body>
+    <div id="popup_title_container">
+        <div id="popup_title">법률용어 사전</div>
+        <div id="popup_close">
+            <a href="#" onclick="window.close();"><img src="/static/images/lawbalance.png" alt="창닫기" /></a>
+        </div>
+    </div>
+    
+    <div class="popup_search_area">
+        <div class="popup_search_line_north"></div>
+
+        <div class="popup_search_contents">
+            <div class="popup_search_form">
+                <form action="legalterm.html" method="post" onsubmit="return doSearch(this);">
+                    <input type="text" class="search_text" name="pKeyword" value="세금" />
+                    <input type="image" src="/lims/core/images/front/popup/btn_serch.gif" alt="검색" />
+                </form>
+            </div>
+
+            <div id="popup_search_index">
+                <ul class="inline">
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=-1">
+                        <img src="/lims/core/images/front/search/hangul_all.gif" alt="전체" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=0">
+                        <img src="/lims/core/images/front/search/hangul_01.gif" alt="ㄱ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=1">
+                        <img src="/lims/core/images/front/search/hangul_02.gif" alt="ㄴ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=2">
+                        <img src="/lims/core/images/front/search/hangul_03.gif" alt="ㄷ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=3">
+                        <img src="/lims/core/images/front/search/hangul_04.gif" alt="ㄹ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=4">
+                        <img src="/lims/core/images/front/search/hangul_05.gif" alt="ㅁ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=5">
+                        <img src="/lims/core/images/front/search/hangul_06.gif" alt="ㅂ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=6">
+                        <img src="/lims/core/images/front/search/hangul_07.gif" alt="ㅅ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=7">
+                        <img src="/lims/core/images/front/search/hangul_08.gif" alt="ㅇ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=8">
+                        <img src="/lims/core/images/front/search/hangul_09.gif" alt="ㅈ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=9">
+                        <img src="/lims/core/images/front/search/hangul_10.gif" alt="ㅊ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=10">
+                        <img src="/lims/core/images/front/search/hangul_11.gif" alt="ㅋ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=11">
+                        <img src="/lims/core/images/front/search/hangul_12.gif" alt="ㅌ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=12">
+                        <img src="/lims/core/images/front/search/hangul_13.gif" alt="ㅍ" /></a>
+                    </li>
+                    <li>
+                        <a href="legalterm.html?pHangulPrefix=13">
+                        <img src="/lims/core/images/front/search/hangul_14.gif" alt="ㅎ" /></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="popup_search_line_south"></div>
+    </div>
+
+    <div id="popup_contents_container">
+        <div id="popup_search_result">
+            <div id="search_contents">
+                <div class="popup_title_blue">
+                    검색내용
+                </div>
+
+                <div id="search_contents_area">
+                    <ul id="search_contents_list">
+                        
+                        
+                            <li>검색된 용어가 없습니다.</li>
+                        
+                    </ul>
+                    
+                </div>
+            </div>
+
+            <div id="word_description">
+                <div class="popup_title_blue">
+                    용어설명
+                </div>
+
+                
+                    <iframe id="word_description_area" name="word_description_area" frameborder="0" scrolling="yes"></iframe>
+                
+                
+            </div>
+        </div>
+    </div>
+<form name="frmPage" method="post" action="/lims/front/page/legalterm.html">
+    <input type="hidden" name="pAct" />
+    <input type="hidden" name="pPage" />
+    <input type="hidden" name="pKeyword" value="세금" />
+    <input type="hidden" name="pHangulPrefix" value="-1" />
+</form>
+</body>
+</html>

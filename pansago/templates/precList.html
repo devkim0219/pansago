@@ -1,0 +1,97 @@
+{% extends "base.html"%}
+
+{% block title %}
+판례 목록
+{% endblock %}
+
+{% block content %}
+<div class="pansago">
+    <div style="margin-right: 15px;">
+        <form action="/preclist" method="get">
+            <div class="form-inline row justify-content-end" style="margin-bottom: 10px; margin-right: 1px;">
+                <div>
+                    <select name="type" class="default-select">
+                        <option value="law_title">사건명</option>
+                        <option value="law_event_type">법률유형</option>
+                    </select>
+                </div>
+                <div style="margin-left: 5px;">
+                    <input type="text" name="text" placeholder="검색할 내용 입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '검색할 내용 입력'" class="single-input">
+                </div>
+                <div style="margin-left: 5px;">
+                    <input type="submit" class="genric-btn info radius" value="검색">
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <table class="table" >
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="width: 5%;">번호</th>
+                <th scope="col" style="width: 45%; text-align: left;">제목</th>
+                <th scope="col" style="width: 10%;">법원</th>
+                <th scope="col" style="width: 10%;">사건유형</th>
+                <th scope="col" style="width: 10%;">판결유형</th>
+                <th scope="col" style="width: 10%;">선고일자</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for tmp in posts %}
+            <tr>
+                <td >{{ tmp.law_no }}</td>
+                <td style="text-align: left;"><a href="/precDetail/?no={{ tmp.law_no }}&indexsearch={{ indexsearch }}">{{ tmp.law_title }}</a></td>
+                
+                <td>{{ tmp.law_court_name }}</td>
+                <td>{{ tmp.law_event_type }}</td>
+                <td>{{ tmp.law_result }}</td>
+                <td>{{ tmp.law_date }}</td>
+            </tr>
+        {% endfor %}    
+        </tbody>
+    </table>
+    {% if posts.0 is None %}
+        <div class="row justify-content-center">
+            <p>판례가 존재하지 않습니다.</p>
+        </div>
+    {% endif %}
+    
+    <nav class="blog-pagination justify-content-center d-flex" style="margin-top: 50px;">
+        <ul class="pagination">
+            {% if posts.has_previous %}
+                <li class="page-item">
+                    <a href="?page=1&type={{searchtype}}&text={{searchkeyword}}&indexsearch={{indexsearch}}" class="page-link">처음</a>
+                </li>
+                <li class="page-item">
+                    <a href="?page={{posts.previous_page_number}}&type={{searchtype}}&text={{searchkeyword}}&indexsearch={{indexsearch}}" class="page-link">이전</a>
+                </li>   
+            {% endif %}
+            {% if posts.0 is not None %}
+                <form action="/preclist" method="GET">
+                    <li class="page-item">
+                        <input type="text" class="page-link" name="page" value="{{posts.number}}">
+                    </li>
+                    <input type="hidden" name="type" value="{{searchtype}}">
+                    <input type="hidden" name="text" value="{{searchkeyword}}">
+                    <input type="hidden" name="indexsearch" value="{{indexsearch}}">
+                </form>
+                <li class="page-item">
+                    <input type="text" class="page-link" value="/" disabled="True">
+                </li>
+                <li class="page-item">
+                    <input type="text" class="page-link" value="{{posts.paginator.num_pages}}" disabled="True">
+                </li>
+            {% endif %}
+            {% if posts.has_next %}
+                <li class="page-item">
+                    <a href="?page={{posts.next_page_number}}&type={{searchtype}}&text={{searchkeyword}}&indexsearch={{indexsearch}}" class="page-link" aria-label="Next">다음</a>
+                </li>
+                <li class="page-item">
+                    <a href="?page={{posts.paginator.num_pages}}&type={{searchtype}}&text={{searchkeyword}}&indexsearch={{indexsearch}}" class="page-link" aria-label="Next">마지막</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

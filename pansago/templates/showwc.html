@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+PansaGo
+{% endblock %}
+
+{% block content %}
+<div style="margin-top: 100px; text-align: center;">
+    <div style="margin-bottom: 30px;">
+        <H3># 워드클라우드 - {{event_type}}</H3>
+    </div>
+    <div>
+        {% if event_type == '민사' %}
+            <img src="/static/src/민사.png" class="my_img">
+            <img src="/static/src/민사_빈도수.png" class="my_img">
+        {% elif event_type == '형사' %}
+            <img src="/static/src/형사.png" class="my_img">
+            <img src="/static/src/형사_빈도수.png" class="my_img">
+        {% elif event_type == '가사' %}
+            <img src="/static/src/가사.png" class="my_img">
+            <img src="/static/src/가사_빈도수.png" class="my_img">
+        {% elif event_type == '일반행정' %}
+            <img src="/static/src/일반행정.png" class="my_img">
+            <img src="/static/src/일반행정_빈도수.png" class="my_img">
+        {% elif event_type == '특허' %}
+            <img src="/static/src/특허.png" class="my_img">
+            <img src="/static/src/특허_빈도수.png" class="my_img">
+        {% elif event_type == '세무' %}
+            <img src="/static/src/세무.png" class="my_img">
+            <img src="/static/src/세무_빈도수.png" class="my_img">
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

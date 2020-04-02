@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}
+상세 판례 정보
+{% endblock %}
+
+{% block content %}
+<div id="bodyContent">
+    <div class="viewwrap" id="viewwrapCenter" style="height: 895px;">
+        <div id="contentBody">
+            <a id="top"></a>
+            <h2>{{ precDetail.law_title }}</h2>
+            <div class="subtit1">{{ precDetail.law_seongo }}&nbsp;{{ precDetail.law_event_no }}&nbsp;{{ precDetail.law_result }}</div>
+            <div style="text-align: left;">
+                <h3>연관 검색어</h3>
+                <h4>
+                    {% for tmp in similar_words %}
+                        <a href="/preclist?page=1&type={{searchtype}}&text={{searchkeyword}}&indexsearch={{tmp}}"># {{tmp}}</a>&nbsp;&nbsp;
+                    {% endfor %}
+                </h4>
+            </div>
+            <div class="pgroup" style="padding-left:28px;" id="conScroll">
+                <h4 id="sa">【사건종류명】</h4>
+                <p class="pty4">
+                    {{ precDetail.law_event_type }}
+                </p>
+                <h4 id="sa">【법원명】</h4>
+                <p class="pty4">
+                    {{ precDetail.law_court_name }}
+                </p>
+                <h4 id="sa">【선고일자】</h4>
+                <p class="pty4">
+                    {{ precDetail.law_date }}
+                </p>
+                <h4 id="sa">【판결내용】</h4>
+                <p class="pty4">
+                    <!-- {{ law_content | safe }} -->
+                    {{ precDetail.law_content | safe}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div class="box">            
+
+        <div class="form-inline" style="margin-top:5px">
+            <label style="width:90px">사건명</label>
+            <label>{{ precDetail.law_title }}</label>
+        </div> 
+
+        <div class="form-inline" style="margin-top:5px">
+            <label style="width:90px">사건번호</label>
+            <label>{{ precDetail.law_event_no }}</label>
+        </div>
+
+        <div class="form-inline" style="margin-top:5px">
+            <label style="width:90px">선고일자</label>
+            <label>{{ precDetail.law_date }}</label>
+        </div>
+        
+        <div class="form-inline" style="margin-top:5px">
+            <label style="width:90px">선고</label>
+            <label>{{ precDetail.law_seongo }}</label>
+        </div>
+
+        <div class="form-inline" style="margin-top:5px">
+            <label style="width:90px">법원명</label>
+            <label>{{ precDetail.law_court_name }}</label>
+        </div>
+
+        <div class="form-inline" style="margin-top:5px">
+            <label style="width:90px">사건종류명</label>
+            <label>{{ precDetail.law_event_type }}</label>
+        </div>
+
+        <div class="form-inline" style="margin-top:5px">
+            <label style="width:90px">판결 유형</label>
+            <label>{{ precDetail.law_result }}</label>
+        </div>
+
+        <div class="form-inline" style="margin-top:5px">
+            <label style="width:90px">판례 내용</label>
+            <label>{{ precDetail.law_content }}</label>
+        </div>
+    </div>   
+</div> -->
+{% endblock %}
